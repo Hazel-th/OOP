@@ -1,14 +1,43 @@
 #include <gtest/gtest.h>
+#include "from_Вecimal_to_Greek.h"
+#include <string>
 
+TEST(ExampleOfStandartUsageTest1, BasicAssertions) {
+  string inputnum = "2";
 
-TEST(HelloTest, BasicAssertions) {
-  // arrange 
-  int first = 2;
-  int second = 5;
+  string res = from_Becimal_to_Greek(inputnum);
 
-  // act
-  int sum = first + second;
+  EXPECT_EQ(res, "iki");
+}
 
-  // assert
-  EXPECT_EQ(sum, 7);
+TEST(ExampleOfStandartUsageTest2, BasicAssertions) {
+  string inputnum = "0";
+
+  string res = from_Becimal_to_Greek(inputnum);
+
+  EXPECT_EQ(res, "sifir");
+}
+
+TEST(ExampleOfStandartUsageTest3, BasicAssertions) {
+  string inputnum = "10";
+
+  string res = from_Becimal_to_Greek(inputnum);
+
+  EXPECT_EQ(res, "on");
+}
+
+TEST(ExampleOfStandartUsageTest4, BasicAssertions) {
+  string inputnum = "11";
+
+  string res = from_Becimal_to_Greek(inputnum);
+
+  EXPECT_EQ(res, "on bir");
+}
+
+TEST(incorect, BasicAssertions) {
+  string inputnum = "bs";
+
+  string res = from_Becimal_to_Greek(inputnum);
+
+  EXPECT_EQ(res, "error");
 }

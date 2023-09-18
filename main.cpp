@@ -1,10 +1,12 @@
+#include "from_Вecimal_to_Greek.h"
 #include <iostream>
 
-#include "lib.h"
 
 using namespace std;
 
 int main() {
-    cout << "Bruh: " << endl
-         << A() << endl;
+    string inputnum;
+    cin >> inputnum;
+    cout << from_Becimal_to_Greek(inputnum);
+    return 0; 
 }

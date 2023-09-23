@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
-#include "from_Вecimal_to_Greek.h"
+#include "from_Decimal_to_Turkish.h"
 #include <string>
 
 TEST(ExampleOfStandartUsageTest1, BasicAssertions) {
   string inputnum = "2";
 
-  string res = from_Becimal_to_Greek(inputnum);
+  string res = from_Decimal_to_Turkish(inputnum);
 
   EXPECT_EQ(res, "iki");
 }
@@ -13,7 +13,7 @@ TEST(ExampleOfStandartUsageTest1, BasicAssertions) {
 TEST(ExampleOfStandartUsageTest2, BasicAssertions) {
   string inputnum = "0";
 
-  string res = from_Becimal_to_Greek(inputnum);
+  string res = from_Decimal_to_Turkish(inputnum);
 
   EXPECT_EQ(res, "sifir");
 }
@@ -21,7 +21,7 @@ TEST(ExampleOfStandartUsageTest2, BasicAssertions) {
 TEST(ExampleOfStandartUsageTest3, BasicAssertions) {
   string inputnum = "10";
 
-  string res = from_Becimal_to_Greek(inputnum);
+  string res = from_Decimal_to_Turkish(inputnum);
 
   EXPECT_EQ(res, "on");
 }
@@ -29,7 +29,7 @@ TEST(ExampleOfStandartUsageTest3, BasicAssertions) {
 TEST(ExampleOfStandartUsageTest4, BasicAssertions) {
   string inputnum = "11";
 
-  string res = from_Becimal_to_Greek(inputnum);
+  string res = from_Decimal_to_Turkish(inputnum);
 
   EXPECT_EQ(res, "on bir");
 }
@@ -37,7 +37,7 @@ TEST(ExampleOfStandartUsageTest4, BasicAssertions) {
 TEST(incorect, BasicAssertions) {
   string inputnum = "bs";
 
-  string res = from_Becimal_to_Greek(inputnum);
+  string res = from_Decimal_to_Turkish(inputnum);
 
-  EXPECT_EQ(res, "error");
+  EXPECT_EQ(res, "It is not a number or number not in [0;99]");
 }

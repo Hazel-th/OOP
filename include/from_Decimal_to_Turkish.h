@@ -5,4 +5,4 @@
 
 using namespace std;
 
-string from_Becimal_to_Greek(string inputnum);
+string from_Decimal_to_Turkish(string inputnum);

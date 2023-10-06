@@ -33,7 +33,7 @@ virtual ~Array() noexcept;
 цифрой. Младшая цифра имеет меньший индекс (единицы – в нулевом элементе массива).
 
 ### Код программы:
-#### main.cpp:
+''' main.cpp:
 #include <iostream>
 #include <string>
 #include "twelve.h"
@@ -71,9 +71,9 @@ int main(){
     std::cout << "Copy of b: d = " << d.GetNums() << '\n';
 
     return 0;
-}
+}'''
 
-#### twelve.h:
+'''twelve.h:
 #pragma once
 
 #include <iostream>
@@ -112,9 +112,9 @@ private:
     unsigned char* nums;
     int to_10;
 
-};
+}; '''
 
-#### twelve.cpp:
+'''twelve.cpp:
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -347,9 +347,9 @@ std::string Twelve::equally(const Twelve& other)
     else{
         return "false";
     }
-}
+} '''
 
-#### tests.cpp:
+'''tests.cpp:
 #include <gtest/gtest.h>
 #include "twelve.h"
 
@@ -611,4 +611,4 @@ TEST(test_10, InvalidArgument)
 {
 
     ASSERT_THROW(Twelve("76A-9"), std::invalid_argument);
-}
+} '''

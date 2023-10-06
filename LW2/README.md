@@ -349,7 +349,7 @@ std::string Twelve::equally(const Twelve& other)
     }
 } \'''
 
-\'''tests.cpp:
+\''' tests.cpp:
 #include <gtest/gtest.h>
 #include "twelve.h"
 

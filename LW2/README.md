@@ -34,7 +34,8 @@ virtual ~Array() noexcept;
 
 ### Код программы:
 #### main.cpp:
-`#include <iostream>
+```cpp
+#include <iostream>
 #include <string>
 #include "twelve.h"
 
@@ -71,10 +72,12 @@ int main(){
     std::cout << "Copy of b: d = " << d.GetNums() << '\n';
 
     return 0;
-}`
+}
+```
 
 #### twelve.h:
-`#pragma once
+```cpp
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -112,10 +115,12 @@ private:
     unsigned char* nums;
     int to_10;
 
-};`
+};
+```
 
 #### twelve.cpp:
-`#include <iostream>
+```cpp
+#include <iostream>
 #include <string>
 #include <cmath>
 #include "twelve.h"
@@ -347,10 +352,12 @@ std::string Twelve::equally(const Twelve& other)
     else{
         return "false";
     }
-}`
+}
+```
 
 #### tests.cpp:
-`#include <gtest/gtest.h>
+```cpp
+#include <gtest/gtest.h>
 #include "twelve.h"
 
 TEST(test_1, AllMetods)
@@ -611,4 +618,5 @@ TEST(test_10, InvalidArgument)
 {
 
     ASSERT_THROW(Twelve("76A-9"), std::invalid_argument);
-}`
+}
+```

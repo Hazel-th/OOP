@@ -12,23 +12,20 @@ int main(){
     double coord_sq[8] = {2.0, 4.0, 4.0, 4.0, 4.0, 2.0, 2.0, 2.0};
     double a_sq = 2.0;
     Square* sq = new Square(coord_sq, a_sq);
-    Figure* _sq = sq;
-    figures.add(_sq, 0);
+    figures.add(sq, 0);
 
     double coord_rec[8] = {1.0, 4.0, 3.0, 4.0, 3.0, 1.0, 1.0, 1.0};
     double a_rec = 2.0;
     double b_rec = 3.0;
     Rectangle* rec = new Rectangle(coord_rec, a_rec, b_rec);
-    Figure* _rec = rec;
-    figures.add(_rec, 1);
+    figures.add(rec, 1);
 
     double coord_trap[8] = {2.0, 3.0, 4.0, 3.0, 5.0, 1.0, 1.0, 1.0};;
     double h_trap = 2.0;
     double a_trap = 2.0;
     double b_trap = 4.0;
     Trapezoid* trap = new Trapezoid(coord_trap, h_trap, a_trap, b_trap);
-    Figure* _trap = trap;
-    figures.add(_trap, 2);
+    figures.add(trap, 2);
 
     figures.all();
     std::cout << "\n" << "Общая площадь фигур в массиве: " << figures.all_area() << "\n";

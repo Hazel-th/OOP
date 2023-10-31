@@ -56,6 +56,9 @@ double Square::get_centre_y()
 Square& Square::operator=(const Square& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size];
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
         }
@@ -67,6 +70,9 @@ Square& Square::operator=(const Square& other)
 Square& Square::operator=(Square&& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size];
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
             other.coord[q] = 0;

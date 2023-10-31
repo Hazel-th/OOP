@@ -62,6 +62,9 @@ double Rectangle::get_centre_y()
 Rectangle& Rectangle::operator=(const Rectangle& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size];
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
         }
@@ -74,12 +77,15 @@ Rectangle& Rectangle::operator=(const Rectangle& other)
 Rectangle& Rectangle::operator=(Rectangle&& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size];
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
             other.coord[q] = 0;
         }
         this->a = other.a;
-         other.a = 0;
+        other.a = 0;
         this->b = other.b;
         other.b = 0;
     }

@@ -68,6 +68,9 @@ double Trapezoid::get_centre_y()
 Trapezoid& Trapezoid::operator=(const Trapezoid& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size]; 
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
         }
@@ -81,6 +84,9 @@ Trapezoid& Trapezoid::operator=(const Trapezoid& other)
 Trapezoid& Trapezoid::operator=(Trapezoid&& other)
 {
     if (this != &other){
+        // delete[] coord (указатель на динамический массив с координатами)
+        // this->size = other.size; (размер массива)
+        // coord = new double[size]; 
         for (int q = 0; q < 8; q++){
             this->coord[q] = other.coord[q];
             other.coord[q] = 0;

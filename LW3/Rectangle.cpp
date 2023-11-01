@@ -14,13 +14,13 @@ Rectangle::Rectangle(double coord[8], double& a, double& b): Figure(coord)
     this->b = b;
 }
 
-Rectangle::Rectangle(const Rectangle& other): Figure(coord)
+Rectangle::Rectangle(const Rectangle& other): Figure(other)
 {
     this->a = other.a;
     this->b = other.b;
 }
 
-Rectangle::Rectangle(Rectangle&& other): Figure(coord)
+Rectangle::Rectangle(Rectangle&& other): Figure(std::move(other))
 {
     this->a = other.a;
     other.a = 0;

@@ -16,14 +16,14 @@ Trapezoid::Trapezoid(double coord[8],double& high, double& AB, double& CD): Figu
     this->CD = CD;
 }
 
-Trapezoid::Trapezoid(const Trapezoid& other): Figure(coord)
+Trapezoid::Trapezoid(const Trapezoid& other): Figure(other)
 {
     this->high = other.high;
     this->AB = other.AB;
     this->CD = other.CD;
 }
 
-Trapezoid::Trapezoid(Trapezoid&& other): Figure(coord)
+Trapezoid::Trapezoid(Trapezoid&& other): Figure(std::move(other))
 {
     this->high = other.high;
     other.high = 0;

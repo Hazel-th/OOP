@@ -12,12 +12,12 @@ Square::Square(double coord[8], double& a): Figure(coord)
     this->a = a;
 }
 
-Square::Square(const Square& other): Figure(coord)
+Square::Square(const Square& other): Figure(other)
 {
     this->a = other.a;
 }
 
-Square::Square(Square&& other): Figure(coord)
+Square::Square(Square&& other): Figure(std::move(other))
 {
     this->a = other.a;
     other.a = 0;

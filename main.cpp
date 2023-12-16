@@ -1,23 +1,28 @@
-#include "../lib/includes.h"
-//#include <vector>
-
-int main() {
-    Point<double> p1(0, 0);
-    Point<double> p2(0, 2);
-    Point<double> p3(2, 2);
-    Point<double> p4(2, 0);
-
-    Triangle<double> t(p1, p2, p3);
+#include <iostream>
+#include <map>
+#include "./src/lab0/aloc.cpp"
+#include "./src/lab0/Vector.cpp"
 
 
-    FabricTriangle<double> fabric;
-    auto p = create_array_of_points<double>(3, p1, p2, p3);
-    Figure<double> * fig = fabric.create_figure(p);
+int main(){
+    std::map<int, int, std::less<int>, mai::allocator<std::pair<const int, int>, 10>> map;
 
+    map.insert(std::pair<int, int>(0, 1));
+    map.insert(std::pair<int, int>(1, 1));
+    map.insert(std::pair<int, int>(2, 2));
 
-    std::cout << *fig;
+    for (auto p : map)
+        std::cout << p.first << " " << p.second << std::endl;
 
+        std::cout << "-----------------------------------------\n";
 
+    MyVector::Vector<int, mai::allocator<int, 10>> vect{};
+    for (int i = 0; i < 10; ++i){
+        vect.push_back(i);
+    }
 
-    return 0;
+    for (auto e : vect){
+        std::cout << e << "\n";
+    }
+    
 }

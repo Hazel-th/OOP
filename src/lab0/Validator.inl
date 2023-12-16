@@ -1,12 +1,15 @@
-#include "../include/Validator.h"
-#include "vector"
+#pragma once
 
-void TriangleValidator::validate(Figure & figure) const {
+
+template <typename T>
+void TriangleValidator<T>::validate(Figure<T> & figure) const {
     oneLine(figure.getPoint());
     equilateral(figure.getPoint());
 }
 
-void TriangleValidator::oneLine(Point *points) const {
+
+template <typename T>
+void TriangleValidator<T>::oneLine(std::shared_ptr<Point<T>[]> points) const {
     double len1 = len(points[0], points[1]);
     double len2 = len(points[1], points[2]);
     double len3 = len(points[0], points[2]);
@@ -16,7 +19,8 @@ void TriangleValidator::oneLine(Point *points) const {
 }
 
 
-void TriangleValidator::equilateral(Point * points) const {
+template <typename T>
+void TriangleValidator<T>::equilateral(std::shared_ptr<Point<T>[]>  points) const {
     double a = len(points[0], points[1]);
     double b = len(points[1], points[2]);
     double c = len(points[0], points[2]);
@@ -27,24 +31,32 @@ void TriangleValidator::equilateral(Point * points) const {
 }
 
 
-bool TriangleValidator::goodType(Figure & figure) const {
+template <typename T>
+bool TriangleValidator<T>::goodType(Figure<T> & figure) const {
     return figure.type() == "Triangle";
 }
 
 
-void RectangleValidator::validate(Figure &figure) const {
+template <typename T>
+void RectangleValidator<T>::validate(Figure<T> & figure) const {
     oneLine(figure.getPoint());
     equilateral(figure.getPoint());
     corectPoints(figure.getPoint());
 
+    Point<T> point0 = figure.getPoint()[0];
+    Point<T> point1 = figure.getPoint()[1];
+    Point<T> point2 = figure.getPoint()[2];
+    Point<T> point3 = figure.getPoint()[3];
 
-    if ((!isParalel(figure.getPoint()[0] - figure.getPoint()[3], figure.getPoint()[2] - figure.getPoint()[1])) && (!isParalel(figure.getPoint()[3] - figure.getPoint()[2], figure.getPoint()[1] - figure.getPoint()[0])) ){
+    if ((!isParalel(point0 - point3, point2 - point1))
+        && (!isParalel(point3 - point2, point1 - point0))){
         throw std::invalid_argument("Противоположные стороны не паралельны");
     }
 }
 
 
-void RectangleValidator::oneLine(Point *points) const {
+template <typename T>
+void RectangleValidator<T>::oneLine(std::shared_ptr<Point<T>[]> points) const {
     double a = len(points[0], points[1]);
     double b = len(points[1], points[2]);
     double c = len(points[2], points[3]);
@@ -57,19 +69,21 @@ void RectangleValidator::oneLine(Point *points) const {
 }
 
 
-void RectangleValidator::corectPoints(Point *points) const {
+template <typename T>
+void RectangleValidator<T>::corectPoints(std::shared_ptr<Point<T>[]> points) const {
     double a = len(points[0], points[1]);
     double b = len(points[1], points[2]);
     double c = len(points[2], points[3]);
     double d = len(points[0], points[3]);
     if (sqrt(a * a + b * b) != len(points[0], points[2])
         || sqrt(c * c + d * d) != len(points[1], points[3])) {
-            throw std::invalid_argument("Такого прямоугольника не существует");
+        throw std::invalid_argument("Такого прямоугольника не существует");
     }
 }
 
 
-void RectangleValidator::equilateral(Point * points) const {
+template <typename T>
+void RectangleValidator<T>::equilateral(std::shared_ptr<Point<T>[]>  points) const {
     double a = len(points[0], points[1]);
     double b = len(points[1], points[2]);
     double c = len(points[2], points[3]);
@@ -80,19 +94,22 @@ void RectangleValidator::equilateral(Point * points) const {
 }
 
 
-bool RectangleValidator::goodType(Figure & figure) const {
+template <typename T>
+bool RectangleValidator<T>::goodType(Figure<T> & figure) const {
     return figure.type() == "Rectangle";
 }
 
 
-void BoxValidator::validate(Figure &figure) const {
+template <typename T>
+void BoxValidator<T>::validate(Figure<T> & figure) const {
     oneLine(figure.getPoint());
     equilateral(figure.getPoint());
     corectPoints(figure.getPoint());
 }
 
 
-void BoxValidator::oneLine(Point *points) const {
+template <typename T>
+void BoxValidator<T>::oneLine(std::shared_ptr<Point<T>[]> points) const {
     double len1 = len(points[0], points[1]);
     double len2 = len(points[1], points[2]);
     double len3 = len(points[0], points[2]);
@@ -102,11 +119,14 @@ void BoxValidator::oneLine(Point *points) const {
 }
 
 
-void BoxValidator::corectPoints(Point *points) const {
+template <typename T>
+void BoxValidator<T>::corectPoints(std::shared_ptr<Point<T>[]> points) const {
 
 }
 
-void BoxValidator::equilateral(Point * points) const {
+
+template <typename T>
+void BoxValidator<T>::equilateral(std::shared_ptr<Point<T>[]> points) const {
     double a = len(points[0], points[1]);
     double b = len(points[1], points[2]);
     double c = len(points[2], points[3]);
@@ -117,27 +137,31 @@ void BoxValidator::equilateral(Point * points) const {
 }
 
 
-bool BoxValidator::goodType(Figure & figure) const {
+template <typename T>
+bool BoxValidator<T>::goodType(Figure<T> & figure) const {
     return figure.type() == "Box";
 }
 
 
-Validator::Validator() {
-    validations.push_back(dynamic_cast<IValidator*>(new TriangleValidator()));
-    validations.push_back(dynamic_cast<IValidator*>(new RectangleValidator()));
-    validations.push_back(dynamic_cast<IValidator*>(new BoxValidator()));
+template <typename T>
+Validator<T>::Validator() {
+    validations.push_back(std::shared_ptr<IValidator<T>>(new TriangleValidator<T>()));
+    validations.push_back(std::shared_ptr<IValidator<T>>(new RectangleValidator<T>()));
+    validations.push_back(std::shared_ptr<IValidator<T>>(new BoxValidator<T>()));
 }
 
 
 
-Validator::~Validator() {}
+template <typename T>
+Validator<T>::~Validator() {}
 
-void Validator::validate_figure(Figure &figure) {
+
+template <typename T>
+void Validator<T>::validate_figure(Figure<T> & figure) {
     for (int i = 0; i < validations.size(); ++i) {
         auto validation = validations[i];
         if (validation->goodType(figure)) {
             validation->validate(figure);
-            return;
         }
     }
 }

@@ -1,23 +1,22 @@
-#include "../include/Fabric.h"
-#include "../include/Validator.h"
-#include <algorithm>
-
-
-using namespace std;
+#include "../lib/includes.h"
+//#include <vector>
 
 int main() {
+    Point<double> p1(0, 0);
+    Point<double> p2(0, 2);
+    Point<double> p3(2, 2);
+    Point<double> p4(2, 0);
 
-    try {
-        Point point1(0, 1);
-        Point point2(2, 0);
-        Point point3(1, sqrt(3));
-        Validator v;
-        Triangle triangle(point1, point2, point3);
-        v.validate_figure(triangle);
-    }
-    catch (std::exception& ex) {
-        std::cout << ex.what() << std::endl;
-    }
+    Triangle<double> t(p1, p2, p3);
+
+
+    FabricTriangle<double> fabric;
+    auto p = create_array_of_points<double>(3, p1, p2, p3);
+    Figure<double> * fig = fabric.create_figure(p);
+
+
+    std::cout << *fig;
+
 
 
     return 0;

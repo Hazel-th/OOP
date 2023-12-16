@@ -3,30 +3,37 @@
 #include "Triangle.h"
 
 
+template <class T>
 class Fabric {
 public:
-    virtual Figure* create_figure(Point * points) = 0;
+    virtual Figure<T> * create_figure(std::shared_ptr<Point<T>[]> points) = 0;
     virtual ~Fabric();
 
 };
 
 
-class FabricTriangle : public Fabric {
+template <class T>
+class FabricTriangle : public Fabric<T> {
 public:
-    Figure* create_figure(Point * points) override final;
+    Figure<T> * create_figure(std::shared_ptr<Point<T>[]> points) final;
 
 };
 
 
-class FabricRectangle : public Fabric {
+template <class T>
+class FabricRectangle : public Fabric<T> {
 public:
-    Figure* create_figure(Point * points) override final;
+    Figure<T> * create_figure(std::shared_ptr<Point<T>[]> points) final;
 
 };
 
 
-class FabricBox : public Fabric {
+template <class T>
+class FabricBox : public Fabric<T> {
 public:
-    Figure* create_figure(Point * points) override final;
+    Figure<T> * create_figure(std::shared_ptr<Point<T>[]> points) final;
 
 };
+
+
+#include "../src/Fabric.inl"

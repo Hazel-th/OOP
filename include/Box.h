@@ -1,21 +1,28 @@
 #pragma once
 #include "Rectangle.h"
 
-class Box : public Rectangle {
+
+template <typename T>
+class Box : public Rectangle<T> {
 
 public:
-    Box();
+    Box() = default;
     ~Box() = default;
-    Point * getPoint() const override final;
-    Box(Point& point1, Point& point2, Point& point3, Point & point4);
-    Point center() const override final;
-    double square() const override final;
-    std::ostream& print(std::ostream& out) const override final;
-    std::istream& scan(std::istream& in) override final;
-    bool equal(const Figure& figure) const override final;
-    Figure& operator=(const Figure& figure) override final;
-    Figure& operator=(const Figure&& figure) override final;
+    std::shared_ptr<Point<T>[]> getPoint() const final;
+    Box(const Box & box);
+    Box(const Point<T> & point1,
+        const Point<T> & point2,
+        const Point<T> & point3,
+        const Point<T> & point4);
+    Point<T> center() const final;
+    double square() const final;
+    std::ostream& print(std::ostream& out) const final;
+    std::istream& scan(std::istream& in) final;
+    bool equal(const Figure<T>& figure) const final;
+    Box<T> & operator=(const Box<T> & box);
+    Box<T> & operator=(Box<T> && box);
     std::string type() const override { return "Box"; };
-    Rectangle &toRectangle();
 
 };
+
+#include "../src/Box.inl"
